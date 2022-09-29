@@ -1,4 +1,5 @@
 name: Upload to Google Storage
+runs-on: ubuntu-latest
 on: [push]
 jobs:
   job_id:
