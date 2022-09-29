@@ -1,4 +1,5 @@
 name: Upload to Google Storage
+on: [push]
 jobs:
   job_id:
 
