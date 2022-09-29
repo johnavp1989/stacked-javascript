@@ -1,5 +1,4 @@
 name: Upload to Google Storage
-runs-on: ubuntu-latest
 on: [push]
 jobs:
   job_id:
@@ -8,6 +7,8 @@ jobs:
     permissions:
       contents: 'read'
       id-token: 'write'
+
+    runs-on: ubuntu-latest
 
     steps:
     # actions/checkout MUST come before auth
