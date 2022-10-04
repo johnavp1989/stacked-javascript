@@ -1,4 +1,4 @@
-name: Upload to Google Storage
+name: Minify JS and CSS files
 on: [push]
 jobs:
   job_id:
@@ -9,11 +9,17 @@ jobs:
       # Check-out repository under $GITHUB_WORKSPACE, so auto-minify job can access it
       - uses: actions/checkout@v2
 
-      - name: Auto Minify
+      - name: Minify /home
         uses: nizarmah/auto-minify@v2.1
         with:
-          directory: 'javascript'
-          output: 'mini_javascript'
+          directory: 'javascript/home'
+          output: 'mini_javascript/home'
+
+      - name: Minify /add-firewood
+        uses: nizarmah/auto-minify@v2.1
+        with:
+          directory: 'javascript/add-firewood'
+          output: 'mini_javascript/add-firewood'
 
       # Auto commits minified files to the repository
       # Ignore it if you don't want to commit the files to the repository
