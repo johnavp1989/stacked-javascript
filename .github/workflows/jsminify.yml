@@ -1,0 +1,32 @@
+name: Minify JS and CSS files
+on:
+  pull_request_review:
+    types: [submitted]
+jobs:
+    approved:
+      runs-on: ubuntu-latest
+      if: github.event.review.state == 'approved'
+      steps:
+        # Check-out repository under $GITHUB_WORKSPACE, so auto-minify job can access it
+        - uses: actions/checkout@v2
+
+        - name: Minify /home
+          uses: nizarmah/auto-minify@v2.1
+          with:
+            directory: 'javascript/home'
+            output: 'mini_javascript/home'
+
+        - name: Minify /add-firewood
+          uses: nizarmah/auto-minify@v2.1
+          with:
+            directory: 'javascript/add-firewood'
+            output: 'mini_javascript/add-firewood'
+
+        # Auto commits minified files to the repository
+        # Ignore it if you don't want to commit the files to the repository
+        - name: Auto committing minified files
+          uses: stefanzweifel/git-auto-commit-action@v4
+          with:
+            repository: 'mini_javascript'
+            commit_message: "Github Action: Auto Minified JS and CSS files"
+            branch: ${{ github.ref }}
