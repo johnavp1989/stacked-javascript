@@ -26,12 +26,14 @@ jobs:
         with:
           directory: 'javascript/home'
           output: 'mini_javascript/home'
+          overwrite: true
 
       - name: Minify /add-firewood 🚐
         uses: nizarmah/auto-minify@v2.1
         with:
           directory: 'javascript/add-firewood'
           output: 'mini_javascript/add-firewood'
+          overwrite: true
 
       - name: Authenticate to Google Cloud 🔓
         uses: 'google-github-actions/auth@v0'
