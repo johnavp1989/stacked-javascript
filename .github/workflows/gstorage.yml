@@ -6,26 +6,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  minify_js:
-    name: Minify Javascript 🚐
-    runs-on: ubuntu-latest
-
-    steps:
-      # Check-out repository under $GITHUB_WORKSPACE, so auto-minify job can access it
-      - uses: actions/checkout@v2
-
-      - name: Minify /home
-        uses: nizarmah/auto-minify@v2.1
-        with:
-          directory: 'javascript/home'
-          output: 'mini_javascript/home'
-
-      - name: Minify /add-firewood
-        uses: nizarmah/auto-minify@v2.1
-        with:
-          directory: 'javascript/add-firewood'
-          output: 'mini_javascript/add-firewood'
-
   upload:
     name: Upload to Google Storage 📤
 
@@ -37,24 +17,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # actions/checkout MUST come before auth
-    - uses: 'actions/checkout@v3'
+      # actions/checkout MUST come before auth
+      - name: Checkout Repo 🛒
+        uses: 'actions/checkout@v3'
 
-    - id: 'auth'
-      name: 'Authenticate to Google Cloud'
-      uses: 'google-github-actions/auth@v0'
-      with:
-        workload_identity_provider: 'projects/940755218400/locations/global/workloadIdentityPools/github-actions/providers/github-actions'
-        service_account: 'github-actions@stacked-327723.iam.gserviceaccount.com'
+      - name: Minify /home 🚐
+        uses: nizarmah/auto-minify@v2.1
+        with:
+          directory: 'javascript/home'
+          output: 'mini_javascript/home'
 
-    - id: 'upload-javascript'
-      uses: 'google-github-actions/upload-cloud-storage@v0'
-      with:
-        path: 'javascript'
-        destination: 'stacked_javascript'
+      - name: Minify /add-firewood 🚐
+        uses: nizarmah/auto-minify@v2.1
+        with:
+          directory: 'javascript/add-firewood'
+          output: 'mini_javascript/add-firewood'
 
-    - id: 'upload-mini_javascript'
-      uses: 'google-github-actions/upload-cloud-storage@v0'
-      with:
-        path: 'mini_javascript'
-        destination: 'stacked_javascript'
+      - name: Authenticate to Google Cloud 🔓
+        uses: 'google-github-actions/auth@v0'
+        with:
+          workload_identity_provider: 'projects/940755218400/locations/global/workloadIdentityPools/github-actions/providers/github-actions'
+          service_account: 'github-actions@stacked-327723.iam.gserviceaccount.com'
+
+      - name: Upload Raw Javascript 📤
+        uses: 'google-github-actions/upload-cloud-storage@v0'
+        with:
+          path: 'javascript'
+          destination: 'stacked_javascript'
+
+      - name: Upload Minified Javascript 📤
+        uses: 'google-github-actions/upload-cloud-storage@v0'
+        with:
+          path: 'mini_javascript'
+          destination: 'stacked_javascript'

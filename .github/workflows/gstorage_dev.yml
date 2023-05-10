@@ -5,7 +5,8 @@ on:
       - master
   workflow_dispatch:
 jobs:
-  job_id:
+  upload:
+    name: Upload to Google Storage Dev Bucket 📤
 
     # Add "id-token" with the intended permissions.
     permissions:
