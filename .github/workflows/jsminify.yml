@@ -4,9 +4,9 @@ on:
     types: [submitted]
   workflow_dispatch:
 jobs:
-    approved:
+    minify_js:
+      name: Minify Javascript 🚐
       runs-on: ubuntu-latest
-      if: github.event.review.state == 'approved'
       steps:
         # Check-out repository under $GITHUB_WORKSPACE, so auto-minify job can access it
         - uses: actions/checkout@v2
@@ -23,11 +23,3 @@ jobs:
             directory: 'javascript/add-firewood'
             output: 'mini_javascript/add-firewood'
 
-        # Auto commits minified files to the repository
-        # Ignore it if you don't want to commit the files to the repository
-        - name: Auto committing minified files
-          uses: stefanzweifel/git-auto-commit-action@v4
-          with:
-            repository: 'mini_javascript'
-            commit_message: "Github Action: Auto Minified JS and CSS files"
-            branch: ${{ github.ref }}
