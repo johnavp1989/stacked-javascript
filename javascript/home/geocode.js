@@ -1,3 +1,5 @@
+<script>
+
 // Geocode address in search bar on enter key press
 document.getElementById("location-search-bar")
     .addEventListener("keydown", function(event) {
@@ -102,3 +104,4 @@ function lookupLocationReverse(location) {
     // handle errors
     })
 }
+</script>
