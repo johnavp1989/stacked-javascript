@@ -1,3 +1,4 @@
+<script>
 var markers = []
 var markerIconSize =  [35, 35] // size of the icon
 var markerIconAnchor =  [15, 30] // point of the icon which will correspond to marker's location
@@ -168,3 +169,5 @@ function makeMap(i){
     }
   }
 }
+
+</script>
