@@ -1,4 +1,3 @@
-<script>
 // On map click hide stack details card and jump to top of page
 map.on('click', hideStackDetailsCard)
 function hideStackDetailsCard() {
@@ -42,4 +41,3 @@ function copyStackURLText() {
 }
 
 document.getElementById("share-this-stack-link").addEventListener("click", copyStackURLText)
-</script>

@@ -1,22 +1,3 @@
-<style>
-#map {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-}
-
-</style>
-<!DOCTYPE html>
-<html>
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <title>Stack Map</title>
-
-</head>
-<div id="map"></div>
-<body onload="$( document ).ready(initialize())">
-
-<script type="text/javascript">
 var map
 var userLoc
 var hashParameterStackId
@@ -220,6 +201,3 @@ $('#zoom-out').click(function(){
 document.getElementById('my-location').onclick = function () {
     getLocation()
 }
-</script>
-</body>
-</html>

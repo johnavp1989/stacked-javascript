@@ -1,4 +1,3 @@
-<script>
 function onMarkerClick(e) {
     // Check for previously selected marker and reset icon
     if (lastSelectedMarker) {
@@ -182,5 +181,3 @@ function onMarkerClick(e) {
     // Update URL hash parameter
     window.location.hash = stackID.innerHTML + "," + stackLatitude.innerHTML + "," + stackLongitude.innerHTML
 }
-
-</script>

@@ -1,4 +1,3 @@
-<script>
 // requestSubmit() polyfill - Safari doesn't suppor this natively
 (function(prototype) {
   if (typeof prototype.requestSubmit == "function") return
@@ -27,4 +26,3 @@
     throw new errorConstructor("Failed to execute 'requestSubmit' on 'HTMLFormElement': " + message + ".", name)
   }
 })(HTMLFormElement.prototype)
-</script>

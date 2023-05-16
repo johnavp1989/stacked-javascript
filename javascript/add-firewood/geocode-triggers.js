@@ -1,4 +1,3 @@
-<script>
 $( document ).ready(function() {
   document.getElementById('my-location').onclick = function () {
     getLocation()
@@ -34,4 +33,3 @@ $( document ).ready(function() {
     lookupLocation('lookup_coordinates')
   }
 })
-</script>

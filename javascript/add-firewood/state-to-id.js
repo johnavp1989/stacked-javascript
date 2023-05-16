@@ -1,4 +1,3 @@
-<script>
 // Disable first option in state drop down
 $( "#stack-state option:first-child" ).attr("disabled","disabled");
 
@@ -155,4 +154,3 @@ var stateIds = {
     "id": "9b092e5467801d90c62eebe7e39ebe14"
   }
 }
-</script>

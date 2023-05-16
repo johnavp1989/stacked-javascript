@@ -1,4 +1,3 @@
-<script>
 var postUrl = 'https://" + apiHost "/collections/619b9db62516ba6ebe4db869/items'
 
 function createItem() {
@@ -190,4 +189,3 @@ $(document).ready(function(){
   description.addEventListener("keyup", countDescription)
   description.addEventListener("paste", countDescription)
 })
-</script>

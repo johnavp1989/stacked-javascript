@@ -1,4 +1,3 @@
-<script>
 $(document).ready(function() {
   let stackLatitude =  document.getElementById("latitude")
   let stackLongitude = document.getElementById("longitude")
@@ -50,4 +49,3 @@ $(document).ready(function() {
 
   document.getElementById("share-this-stack-link").addEventListener("click", copyStackURLText)
 })
-</script>

@@ -1,4 +1,3 @@
-<script>
 // Convert image to canvas to allow for proper orientation
 function img2canvas(imgfile) {
   var loadingImage = loadImage(
@@ -97,4 +96,3 @@ function genPreviewImg(previewImg) {
     submitPhotoDiv.appendChild(previewImg)
   }
 }
-</script>

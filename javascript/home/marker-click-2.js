@@ -1,11 +1,3 @@
-<style>
-.map-details-animation-wrapper-slide {
-  height: auto;
-  opacity: 100%;
-}
-</style>
-
-<script>
 var lastSelectedMarker
 var selectedMarkerIconSize =  [35, 35] // size of the icon
 var selectedMarkerIconAnchor =  [15, 30] // point of the icon which will correspond to marker's location
@@ -31,4 +23,3 @@ function closeDetailsCardOnMarkerClick(e) {
     document.getElementById("map-details-animation-wrapper").classList.add("map-details-animation-wrapper-slide")
   }
 }
-</script>
