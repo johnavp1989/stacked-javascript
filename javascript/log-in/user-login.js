@@ -1,4 +1,3 @@
-<script>
 document.getElementById('log-in-button').addEventListener("click", userCookie)
 
 function userCookie() {
@@ -8,4 +7,3 @@ function userCookie() {
    expireDate.setDate(today.getDate()+7)
    document.cookie = "user_email=" + userEmail + ";expires=" + expireDate.toGMTString() + ";Secure"
 }
-</script>

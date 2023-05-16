@@ -1,4 +1,3 @@
-<script>
 var locOptions = {
     enableHighAccuracy: false,
     timeout: 3000,
@@ -92,4 +91,3 @@ function locSuccess(position) {
        // handle errors
        })
 }
-</script>

@@ -1,4 +1,3 @@
-<script>
 var STATE_COLLECTION_STATE_IDS = {
     "Alaska": "61d777891179584d43232326",
     "Puerto Rico": "61d7598b3d5a1d471e2b71a9",
@@ -53,4 +52,3 @@ var STATE_COLLECTION_STATE_IDS = {
     "Pennsylvania": "61abee8890ccd64a7c72457a",
     "Arizona": "61abee7990ccd61db672453d"
 }
-</script>

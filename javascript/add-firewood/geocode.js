@@ -1,4 +1,3 @@
-<script>
 function lookupLocation(task) {
   function geocode() {
     return new Promise(function (resolve, reject) {
@@ -136,4 +135,3 @@ function lookupLocation(task) {
      // handle errors
     })
 }
-</script>

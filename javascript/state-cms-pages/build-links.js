@@ -1,4 +1,3 @@
-<script>
 document.addEventListener('DOMContentLoaded', (event) => {
   /*
   Loop through each location, retrive latitude and longitude
@@ -13,4 +12,3 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }, false);
   }
 })
-</script>

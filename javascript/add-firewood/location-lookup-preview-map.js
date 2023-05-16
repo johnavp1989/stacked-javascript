@@ -1,15 +1,3 @@
-<style>
-#stack-image-preview2-map {
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-    height: 100%;
-    width: 100%;
-    display: block;
-    margin-left: 10px;
-    margin-right: auto;
-</style>
-<script>
 var map
 var mapZoom = 17
 var marker
@@ -56,4 +44,3 @@ function createPreviewMap(lat, lon) {
     }
   }
 }
-</script>

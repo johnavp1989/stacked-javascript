@@ -1,4 +1,3 @@
-<script>
 // On page ready
 var Webflow = Webflow || [];
 Webflow.push(function() {
@@ -51,4 +50,3 @@ Webflow.push(function() {
   }); // End click handler
 
 }); // End ready function
-</script>
