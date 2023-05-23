@@ -32,3 +32,5 @@ jobs:
           path: 'javascript'
           destination: 'stacked_javascript/dev_javascript'
           parent: false
+          headers: |-
+            cache-control: no-store
