@@ -62,14 +62,14 @@ function img2canvas(imgfile) {
         var photoUploadEmbed = document.getElementById("photo-upload-handling")
         submitPhotoDiv.insertBefore(orientedImg, photoUploadEmbed.nextSibling)
         var context = orientedImg.getContext('2d')
-        canvasUrl = context.canvas.toDataURL('image/webp', 0.2)
+        canvasUrl = context.canvas.toDataURL('image/jpeg', 0.1)
         canvasFile = dataURItoBlob(canvasUrl)
       // If there's no map we can just append it
       } else {
         // Append image (canvas) to submit-photo-div
         submitPhotoDiv.appendChild(orientedImg)
         var context = orientedImg.getContext('2d')
-        canvasUrl = context.canvas.toDataURL('image/webp', 0.2)
+        canvasUrl = context.canvas.toDataURL('image/jpeg', 0.1)
         canvasFile = dataURItoBlob(canvasUrl)
       }
     }
