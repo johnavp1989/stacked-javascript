@@ -12,14 +12,14 @@ var selectedMarkerIcon = L.icon({
 
 function closeDetailsCardOnMarkerClick(e) {
   // Close details card on marker click (if human)
-  let hasClass = document.getElementById("map-details-animation-wrapper").classList.contains('map-details-animation-wrapper-slide');
-  if (hasClass === true)
-  {
+  //let hasClass = document.getElementById("map-details-animation-wrapper").classList.contains('map-details-animation-wrapper-slide');
+  //if (hasClass === true)
+  //let isflex = document.getElementById("map-details-animation-wrapper")
+  //if (window.getComputedStyle(isflex) === "flex")
     // Check if click is human
-    if (e.originalEvent?.isTrusted) {
-      document.getElementById("map-details-animation-wrapper").classList.remove("map-details-animation-wrapper-slide")
-    }
+  if (e.originalEvent?.isTrusted) {
+    document.getElementById("map-details-animation-wrapper").style.display = "flex"
   } else {
-    document.getElementById("map-details-animation-wrapper").classList.add("map-details-animation-wrapper-slide")
+    document.getElementById("map-details-animation-wrapper").style.display = "flex"
   }
 }
