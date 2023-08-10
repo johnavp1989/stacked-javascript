@@ -18,8 +18,10 @@ function closeDetailsCardOnMarkerClick(e) {
   //if (window.getComputedStyle(isflex) === "flex")
     // Check if click is human
   if (e.originalEvent?.isTrusted) {
-    document.getElementById("map-details-animation-wrapper").style.display = "flex"
+    //document.getElementById("map-details-animation-wrapper").style.display = "flex"
+    document.getElementById("map-details-animation-wrapper").setAttribute("hidden", false);
   } else {
-    document.getElementById("map-details-animation-wrapper").style.display = "flex"
+    //document.getElementById("map-details-animation-wrapper").style.display = "flex"
+    document.getElementById("map-details-animation-wrapper").setAttribute("hidden", false);
   }
 }
