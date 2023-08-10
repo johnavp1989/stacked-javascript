@@ -1,3 +1,15 @@
+//document.addEventListener('DOMContentLoaded', function() {
+//  document.getElementById("map-details-animation-wrapper").style.visibility = "hidden"
+//  document.getElementById("map-details-animation-wrapper").style.opacity = "1"
+//}, false);
+
+Window.onload = hideCardOnLoad()
+
+function hideCardOnLoad() {
+  document.getElementById("map-details-animation-wrapper").style.visibility = "hidden"
+  document.getElementById("map-details-animation-wrapper").style.opacity = "1"
+}
+
 function onMarkerClick(e) {
     // Check for previously selected marker and reset icon
     if (lastSelectedMarker) {

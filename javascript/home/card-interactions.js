@@ -1,8 +1,7 @@
 // On map click hide stack details card and jump to top of page
 map.on('click', hideStackDetailsCard)
 function hideStackDetailsCard() {
-    //document.getElementById("map-details-animation-wrapper").classList.remove("map-details-animation-wrapper-slide")
-    document.getElementById("map-details-animation-wrapper").style.display = "none"
+    document.getElementById("map-details-animation-wrapper").style.visibility = "hidden"
     window.scrollTo(0,0)
 }
 
