@@ -59,6 +59,11 @@ function makeMap(i){
   } else {
       stackID = collectionObj.items[i]['stackID']
   }
+  if (!collectionObj.items[i]['slug']) {
+      stackSlug = ''
+  } else {
+      stackSlug = collectionObj.items[i]['slug']
+  }
   if (!collectionObj.items[i]['latitude']) {
       stackLatitude = ''
   } else {
@@ -131,6 +136,7 @@ function makeMap(i){
   }
 
   var popUpHtml = '<p id="stackID">' + stackID + '</p>' +
+  '<p id="stackSlug">' + stackSlug + '</p>' +
   '<p id="stackLatitude">' + stackLatitude + '</p>' +
   '<p id="stackLongitude">' + stackLongitude + '</p>' +
   '<p id="stackArrangement">' + stackArrangement + '</p>' +

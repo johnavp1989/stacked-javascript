@@ -1,3 +1,15 @@
+//document.addEventListener('DOMContentLoaded', function() {
+//  document.getElementById("map-details-animation-wrapper").style.visibility = "hidden"
+//  document.getElementById("map-details-animation-wrapper").style.opacity = "1"
+//}, false);
+
+Window.onload = hideCardOnLoad()
+
+function hideCardOnLoad() {
+  document.getElementById("map-details-animation-wrapper").style.visibility = "hidden"
+  document.getElementById("map-details-animation-wrapper").style.opacity = "1"
+}
+
 function onMarkerClick(e) {
     // Check for previously selected marker and reset icon
     if (lastSelectedMarker) {
@@ -20,6 +32,7 @@ function onMarkerClick(e) {
 
     // Retrieve stack details from HTML element
     let stackID = contentDocument.querySelector('#stackID')
+    let stackSlug = contentDocument.querySelector('#stackSlug')
     let stackLatitude = contentDocument.querySelector('#stackLatitude')
     let stackLongitude = contentDocument.querySelector('#stackLongitude')
     let stackArrangement = contentDocument.querySelector('#stackArrangement')
@@ -81,6 +94,10 @@ function onMarkerClick(e) {
     // Add link to Get Directions menu item
     let getDirectionsMenuTextParent = document.getElementById("get-directions-option-text").parentElement
     getDirectionsMenuTextParent.href = directionsURL
+
+    // Add link to Stack Details Page menu item
+    let getStackDetailsMenuTextParent = document.getElementById("stack-details-option-text").parentElement
+    getStackDetailsMenuTextParent.href = "https://www.stacked.camp/stack/" + stackSlug.innerHTML
 
     // Add Active Fire Ban tag if ban is present
     let stateFireItems = document.getElementsByClassName("v2-statefireitem")
