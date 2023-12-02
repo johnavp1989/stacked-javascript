@@ -3,7 +3,7 @@ $( "#stack-state option:first-child" ).attr("disabled","disabled");
 
 // Map states to collection ID's
 var stateIds = {
-  Alabama: {
+  "Alabama": {
     "id": "fc1cbdd03124ec833da6999f010293e3"
   },
   "Alaska": {
