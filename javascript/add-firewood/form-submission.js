@@ -141,6 +141,7 @@ function createItem() {
              throw new Error('Slug missing error')
            }
          addFirewoodForm = document.getElementById("logAStackForm")
+	 console.log(addFirewoodForm)
          addFirewoodForm.addEventListener('submit', (e) => {
            $('html,body').scrollTop(0)
          })

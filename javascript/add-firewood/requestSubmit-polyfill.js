@@ -1,4 +1,4 @@
-// requestSubmit() polyfill - Safari doesn't suppor this natively
+// requestSubmit() polyfill - Safari doesn't support this natively
 (function(prototype) {
   if (typeof prototype.requestSubmit == "function") return
 

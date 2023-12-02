@@ -40,7 +40,7 @@ function lookupLocation() {
        var lat = geoResponse.features[0].geometry.coordinates[1]
        map.flyTo([lat, lon], 15)
      }).catch(function (e) {
-       alert("I'm sorry, unfortunately we were unable to find " + locationSearchBarValue)
+       alert("Unfortunately your search sizzled out. Try simplifying your query by using only the City & State or the Zip code." + locationSearchBarValue)
      })
 }
 
