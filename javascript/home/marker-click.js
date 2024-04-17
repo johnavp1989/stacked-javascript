@@ -104,8 +104,9 @@ function onMarkerClick(e) {
 
     // Make sure Fire Ban tag is hidden
     fireBanTag = document.getElementById("active-fire-ban-tag")
-    fireBanTag.style.display = "none"
-
+    if (fireBanTag !== null) {
+      fireBanTag.style.display = "none"
+    }
     // Iterate through State CMS HTML until we find state where stack is located
     for (let i = 0; i < stateFireItems.length; i++) {
       for (let c = 0; c < stateFireItems[i].children.length; c++) {
@@ -125,7 +126,9 @@ function onMarkerClick(e) {
               */
               if (stateDetail.className == "v2-statefirewarninglevel") {
                 if (stateDetail.innerHTML == "Restricted") {
-                  fireBanTag.style.display = "flex"
+	          if (fireBanTag !== null) {
+                    fireBanTag.style.display = "flex"
+	          }
                   for (let c = 0; c < stateFireItems[i].children.length; c++) {
                     let stateDetail = stateFireItems[i].children[c]
                     if (stateDetail.className == "v2-statefireinfopage") {
