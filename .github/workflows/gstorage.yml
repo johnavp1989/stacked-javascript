@@ -35,6 +35,34 @@ jobs:
           output: 'mini_javascript/add-firewood'
           overwrite: true
 
+      - name: Minify /log-in 🚐
+        uses: nizarmah/auto-minify@v2.1
+        with:
+          directory: 'javascript/log-in'
+          output: 'mini_javascript/log-in'
+          overwrite: true
+
+      - name: Minify /sign-up 🚐
+        uses: nizarmah/auto-minify@v2.1
+        with:
+          directory: 'javascript/sign-up'
+          output: 'mini_javascript/sign-up'
+          overwrite: true
+
+      - name: Minify /leaderboard 🚐
+        uses: nizarmah/auto-minify@v2.1
+        with:
+          directory: 'javascript/leaderboard'
+          output: 'mini_javascript/leaderboard'
+          overwrite: true
+
+      - name: Minify /global 🚐
+        uses: nizarmah/auto-minify@v2.1
+        with:
+          directory: 'javascript/global'
+          output: 'mini_javascript/global'
+          overwrite: true
+
       - name: Authenticate to Google Cloud 🔓
         uses: 'google-github-actions/auth@v0'
         with:
