@@ -4,7 +4,8 @@ function img2canvas(imgfile) {
     imgfile,
     function(img) {
       // Orient photo using EXIF data
-      orientedImg = window.loadImage.scale(img, {canvas: true})
+      // pixelRatio limits number of pixels to prevent hitting canvas limit on Safari (16.777.216 pixels)
+      orientedImg = window.loadImage.scale(img, {canvas: true, pixelRatio: Math.min(2, window.devicePixelRatio)})
 
       // Locate submit-photo-div
       var submitPhotoDiv = document.getElementById("submit-photo-div")
