@@ -2,6 +2,16 @@ var markers = []
 var markerIconSize =  [35, 35] // size of the icon
 var markerIconAnchor =  [15, 30] // point of the icon which will correspond to marker's location
 var markerIconUrl = "https://uploads-ssl.webflow.com/5de4208c747d4127be796c74/62a905154a38e153aeee8c22_Stacked-Icons_Pin-V2-Inactive.svg"
+// Map Layers
+var layersControl
+var momPopMarkers = []
+var gasStationMarkers = []
+var groceryStoreMarkers = []
+var parkOfficeMarkers = []
+var campHostMarkers = []
+var hardwareStoreMarkers = []
+var bigBoxStoreMarkers = []
+var otherMarkers = []
 
 // Define marker icon
 var markerIcon = L.icon({
@@ -32,6 +42,33 @@ function codeAddresses(url, offset=0, currentCount=0) {
 
       for (i = 0; i < collectionObj.count; i++) {
         makeMap(i)
+      //add the groups of markers to map layerGroups
+      momPopLayerGroup = L.layerGroup(momPopMarkers);
+      gasStationLayerGroup = L.layerGroup(gasStationMarkers);
+      groceryStoreLayerGroup = L.layerGroup(groceryStoreMarkers);
+      parkOfficeLayerGroup = L.layerGroup(parkOfficeMarkers);
+      campHostLayerGroup = L.layerGroup(campHostMarkers);
+      hardwareStoreLayerGroup = L.layerGroup(hardwareStoreMarkers);
+      bigBoxStoreLayerGroup = L.layerGroup(bigBoxStoreMarkers);
+      otherLayerGroup = L.layerGroup(otherMarkers);
+
+      // Define map layer overlays
+      mapOverlays = {
+        "Mom & Pop": momPopLayerGroup,
+        "Gas Station/Convenience": gasStationLayerGroup,
+        "Grocery Store": groceryStoreLayerGroup,
+        "Park Office": parkOfficeLayerGroup,
+        "Camp Host": campHostLayerGroup,
+        "Hardware Store": hardwareStoreLayerGroup,
+        "Big Box Store": bigBoxStoreLayerGroup,
+        "Other": otherLayerGroup
+      }
+      // Add groups overlay
+      console.log('Adding overlays')
+      if (typeof layersControl !== 'undefined') {
+          layersControl.remove()
+      }
+      layersControl = L.control.layers({}, mapOverlays, {position:'bottomright'}).addTo(map)
       }
 
     }
@@ -160,7 +197,25 @@ function makeMap(i){
   if (typeof markers != "undefined") {
     let foundMarker = markers.find(findMarker)
     if (typeof foundMarker == "undefined") {
-      var marker = L.marker([stackLatitude, stackLongitude], {icon: markerIcon}).addTo(map)
+      var marker = L.marker([stackLatitude, stackLongitude], {icon: markerIcon})
+      // Group markers into separate arrays, each will be a map layer
+      if (stackEstablishmentType == "Mom & Pop") {
+        momPopMarkers.push(marker)
+      } else if (stackEstablishmentType == "Gas Station/Convenience") {
+        gasStationMarkers.push(marker)
+      } else if (stackEstablishmentType == "Big Box Store") {
+        bigBoxStoreMarkers.push(marker)
+      } else if (stackEstablishmentType == "Park Office") {
+        parkOfficeMarkers.push(marker)
+      } else if (stackEstablishmentType == "Hardware Store") {
+        hardwareStoreMarkers.push(marker)
+      } else if (stackEstablishmentType == "Grocery Store") {
+        groceryStoreMarkers.push(marker)
+      } else if (stackEstablishmentType == "Camp Host") {
+        campHostMarkers.push(marker)
+      } else {
+        otherMarkers.push(marker)
+      }
       // Generate marker popup
       marker.bindPopup(popUpHtml)
       // Disable popup on click

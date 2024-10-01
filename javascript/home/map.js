@@ -10,12 +10,21 @@ const maxZoom = 19
 const zoomLoadThreshold = 0 // The zoom level at which markers will be populated
 const flyToZoom = 13
 const dragDistanceThreshold = 300 // In meters
-var userLocationMarker
 const isMobile = window.matchMedia("only screen and (max-width: 480px)").matches
 const isSmallTablet = window.matchMedia("only screen and (min-width: 481px) and (max-width: 767px)").matches
 const isTablet = window.matchMedia("only screen and (min-width: 768px) and (max-width: 1024px)").matches
 const isDesktop = window.matchMedia("only screen and (min-width: 1025px) and (max-width: 1280px)").matches
 const isLargeDesktop = window.matchMedia("only screen and (min-width: 1281px)").matches
+var userLocationMarker
+// Map Layers
+var momPopMarkers = []
+var gasStationMarkers = []
+var groceryStoreMarkers = []
+var parkOfficeMarkers = []
+var campHostMarkers = []
+var hardwareStoreMarkers = []
+var bigBoxStoreMarkers = []
+var otherMarkers = []
 
 if (isMobile) {
   initialZoom = initialZoomMobile
