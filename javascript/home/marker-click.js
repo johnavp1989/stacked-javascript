@@ -49,6 +49,7 @@ function onMarkerClick(e) {
     let stackDetailIcons = document.getElementsByClassName("stack-detail-icon-groups")
     let stackVerified = contentDocument.querySelector('#stackVerified')
     let stackVerifiedOn = contentDocument.querySelector('#stackVerifiedOn')
+    let stackUsername = contentDocument.querySelector('#stackUsername')
 
     // Hide all details on card
     for (let stackDetailIcon of stackDetailIcons) {
@@ -158,6 +159,20 @@ function onMarkerClick(e) {
       let verifiedDate = new Date(stackVerifiedOn.innerHTML).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"})
       verifiedText.innerHTML = "Last Verified on " + verifiedDate
       verifiedText.style.display = displayStyle
+    }
+
+    // Display submitter username if present
+    usernameText = document.getElementById("username-text")
+    usernameFounderWrap = document.getElementById("username-founder-wrap")
+    usernameText.style.display = "none"
+    usernameFounderWrap.style.display = "none"
+    if (stackUsername.innerHTML) {
+      if (stackUsername.innerHTML == "phillyguy" || stackUsername.innerHTML == "constablefont") {
+        usernameFounderWrap.style.display = displayStyle
+      } else {
+        usernameText.style.display = 'block'
+        usernameText.innerHTML = "Added by " + stackUsername.innerHTML
+      }
     }
 
     // Reveal extra details icon and texts

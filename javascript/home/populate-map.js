@@ -134,6 +134,11 @@ function makeMap(i){
   } else {
       stackVerifiedOn = collectionObj.items[i]['verifiedOn']
   }
+  if (!collectionObj.items[i]['username']) {
+      stackUsername = ''
+  } else {
+      stackUsername = collectionObj.items[i]['username']
+  }
 
   var popUpHtml = '<p id="stackID">' + stackID + '</p>' +
   '<p id="stackSlug">' + stackSlug + '</p>' +
@@ -151,7 +156,8 @@ function makeMap(i){
   '<p id="stackUserGivenName">' + stackUserGivenName + '</p>' +
   '<p id="stackDescription">' + stackDescription + '</p>' +
   '<p id="stackVerified">' + stackVerified + '</p>' +
-  '<p id="stackVerifiedOn">' + stackVerifiedOn + '</p>'
+  '<p id="stackVerifiedOn">' + stackVerifiedOn + '</p>' +
+  '<p id="stackUsername">' + stackUsername + '</p>'
 
   function findMarker(marker) {
     return marker.stack_id == stackID
