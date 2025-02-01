@@ -37,6 +37,7 @@ document.getElementById("stack-image").onchange = function(e) {
             } // Don't do anything for N or E
             return dd;
           }
+	  console.log(exifData)
           // Calculate latitude decimal
           var latdd = exifData['GPSLatitude'].description
           var latDirection = exifData['GPSLatitudeRef'].value
