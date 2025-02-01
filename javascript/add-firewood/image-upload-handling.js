@@ -26,10 +26,10 @@ document.getElementById("stack-image").onchange = function(e) {
         console.log("Failed to load EXIF data")
       }
       if (exifData) {
-        if (exifData['Orientation']) {
+        if (exifData['Orientation'] !== undefined) {
           exifOrientation = exifData['Orientation'].value
         }
-        if (exifData['GPSLatitude'], exifData['GPSLatitudeRef'], exifData['GPSLongitude'], exifData['GPSLongitudeRef']) {
+        if (exifData['GPSLatitude'] !== undefined && exifData['GPSLatitudeRef'] !== undefined && exifData['GPSLongitude'] !== undefined && exifData['GPSLongitudeRef'] !== undefined) {
           exifHasCoordinates = true
           function SetDDDirection(dd, direction) {
             if (direction == "S" || direction == "W") {
@@ -37,6 +37,7 @@ document.getElementById("stack-image").onchange = function(e) {
             } // Don't do anything for N or E
             return dd;
           }
+	  console.log(exifData)
           // Calculate latitude decimal
           var latdd = exifData['GPSLatitude'].description
           var latDirection = exifData['GPSLatitudeRef'].value
