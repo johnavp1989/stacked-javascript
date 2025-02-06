@@ -1,8 +1,3 @@
-//document.addEventListener('DOMContentLoaded', function() {
-//  document.getElementById("map-details-animation-wrapper").style.visibility = "hidden"
-//  document.getElementById("map-details-animation-wrapper").style.opacity = "1"
-//}, false);
-
 Window.onload = hideCardOnLoad()
 
 function hideCardOnLoad() {
@@ -49,6 +44,7 @@ function onMarkerClick(e) {
     let stackDetailIcons = document.getElementsByClassName("stack-detail-icon-groups")
     let stackVerified = contentDocument.querySelector('#stackVerified')
     let stackVerifiedOn = contentDocument.querySelector('#stackVerifiedOn')
+    let stackUsername = contentDocument.querySelector('#stackUsername').innerHTML
 
     // Hide all details on card
     for (let stackDetailIcon of stackDetailIcons) {
@@ -72,6 +68,18 @@ function onMarkerClick(e) {
 
     // Populate image
     document.getElementById('stack-image').style.backgroundImage = 'url("'+ stackImageUrl.innerHTML + '")'
+
+    // Populate username
+    document.getElementById('username-text').innerHTML = ''
+    document.getElementById('username-text').style.display = 'none'
+    if (stackUsername != 'Unknown') {
+      if (stackUsername == 'constablefont' || stackUsername == 'phillyguy' ) {
+        document.getElementById('username-text').innerHTML = 'Added by a Founder'
+      } else {
+        document.getElementById('username-text').innerHTML = 'Added by ' + stackUsername
+      }
+      document.getElementById('username-text').style.display = 'block'
+    }
 
     // Populate address
     stackAddressTextBox = document.getElementById("stack-address")
