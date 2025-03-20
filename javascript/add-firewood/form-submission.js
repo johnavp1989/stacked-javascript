@@ -1,4 +1,4 @@
-var postUrl = "https://" + apiHost + "/collections/619b9db62516ba6ebe4db869/items"
+var postUrl = "https://" + apiHost + "/v2/collections/619b9db62516ba6ebe4db869/items"
 
 function createItem() {
     // Display loading overlay
@@ -94,10 +94,10 @@ function createItem() {
     }
 
     var data = JSON.stringify({
-        "fields": {
+        "isDraft": true,
+        "isArchived": false,
+        "fieldData": {
             "name": lat + "_" + lon,
-            "_draft": true,
-            "_archived": false,
             "latitude": lat,
             "longitude": lon,
             "street": street,
