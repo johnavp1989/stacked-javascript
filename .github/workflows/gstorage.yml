@@ -69,15 +69,18 @@ jobs:
           node-version: '22'
           cache: 'npm'
 
-      - name: Build the home map 🗺️
+      - name: Build the maps 🗺️
         run: |
           npm ci
           npm run build
-          # esbuild has already minified it, and the minify action cannot parse
-          # its output, so it is built after the minify steps and copied as is.
-          # The minify action runs in Docker as root, so it owns mini_javascript/.
-          sudo mkdir -p mini_javascript/home
-          sudo cp javascript/home/map.js mini_javascript/home/map.js
+          # esbuild has already minified these, and the minify action cannot
+          # parse its output, so they are built after the minify steps and
+          # copied as they are. The minify action runs in Docker as root, so it
+          # owns mini_javascript/.
+          for built in home/map.js add-firewood/location-lookup-preview-map.js; do
+            sudo mkdir -p "mini_javascript/$(dirname "$built")"
+            sudo cp "javascript/$built" "mini_javascript/$built"
+          done
 
       - name: Authenticate to Google Cloud 🔓
         uses: 'google-github-actions/auth@v0'

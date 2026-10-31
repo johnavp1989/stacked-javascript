@@ -1,7 +1,7 @@
-import baseStyle from './style.json';
+import { baseStyle } from '../shared/base-style.js';
 import pinSvg from './icons/pin.svg';
 import pinSelectedSvg from './icons/pin-selected.svg';
-import { tileBounds } from './config.js';
+import { tileBounds } from '../shared/config.js';
 import { pointFeature, stacksGeoJson } from './stacks.js';
 
 const stacksSource = 'stacks';
@@ -39,11 +39,8 @@ function initialZoom() {
 const emptyGeoJson = { type: 'FeatureCollection', features: [] };
 
 function style() {
-  return {
-    ...baseStyle,
+  return baseStyle({
     sources: {
-      ...baseStyle.sources,
-      protomaps: { ...baseStyle.sources.protomaps, attribution: '<a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap</a>' },
       [stacksSource]: {
         type: 'geojson',
         data: emptyGeoJson,
@@ -54,7 +51,6 @@ function style() {
       [selectedSource]: { type: 'geojson', data: emptyGeoJson },
     },
     layers: [
-      ...baseStyle.layers,
       {
         id: clusterLayer,
         type: 'circle',
@@ -84,7 +80,7 @@ function style() {
       pinLayerSpec(pinLayer, stacksSource, pinImage, ['!', ['has', 'point_count']]),
       pinLayerSpec(selectedPinLayer, selectedSource, selectedPinImage),
     ],
-  };
+  });
 }
 
 function pinLayerSpec(id, source, image, filter) {

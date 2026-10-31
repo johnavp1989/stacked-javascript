@@ -1,4 +1,4 @@
-// Where the home map's data comes from. Keep in step with the app's
+// Where the website maps' data comes from. Keep in step with the app's
 // lib/ui/core/constants/map_config.dart (MapTileConfig).
 
 export const apiBaseUrl = 'https://private.api.stacked.camp';

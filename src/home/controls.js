@@ -1,4 +1,4 @@
-import { apiBaseUrl } from './config.js';
+import { apiBaseUrl } from '../shared/config.js';
 
 const myLocationIconUrl = 'https://uploads-ssl.webflow.com/5de4208c747d4127be796c74/6187ed619f8c8d474e7c99b6_MyLocD%404x.png';
 const searchZoom = 14;

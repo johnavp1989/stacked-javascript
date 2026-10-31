@@ -3,7 +3,7 @@
 // empty, since everything they did is here.
 import { copyShareLink, fillCard, hideCard, hideCardOnLoad, stackHash } from './card.js';
 import { wireControls } from './controls.js';
-import { loadMaplibre } from './load-maplibre.js';
+import { loadMaplibre } from '../shared/load-maplibre.js';
 import { StackMap } from './map.js';
 import { loadAllStacks } from './stacks.js';
 

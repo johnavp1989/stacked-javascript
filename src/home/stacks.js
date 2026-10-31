@@ -1,4 +1,4 @@
-import { apiBaseUrl } from './config.js';
+import { apiBaseUrl } from '../shared/config.js';
 
 const pageSize = 100;
 // A safety cap in case the API's total is ever wrong.

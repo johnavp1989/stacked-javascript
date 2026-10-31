@@ -5,7 +5,7 @@
   "description": "Scripts the stacked.camp Webflow site loads from Google Cloud Storage",
   "scripts": {
     "style": "node scripts/generate-style.mjs",
-    "build": "esbuild src/home/index.js --bundle --minify --format=iife --target=es2019 --loader:.svg=text --outfile=javascript/home/map.js"
+    "build": "esbuild home/map=src/home/index.js add-firewood/location-lookup-preview-map=src/add-firewood/preview-map.js --bundle --minify --format=iife --target=es2019 --loader:.svg=text --outdir=javascript"
   },
   "devDependencies": {
     "@protomaps/basemaps": "5.7.2",
