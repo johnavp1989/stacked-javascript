@@ -63,6 +63,22 @@ jobs:
           output: 'mini_javascript/global'
           overwrite: true
 
+      - name: Set up Node 🟢
+        uses: 'actions/setup-node@v4'
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Build the home map 🗺️
+        run: |
+          npm ci
+          npm run build
+          # esbuild has already minified it, and the minify action cannot parse
+          # its output, so it is built after the minify steps and copied as is.
+          # The minify action runs in Docker as root, so it owns mini_javascript/.
+          sudo mkdir -p mini_javascript/home
+          sudo cp javascript/home/map.js mini_javascript/home/map.js
+
       - name: Authenticate to Google Cloud 🔓
         uses: 'google-github-actions/auth@v0'
         with:

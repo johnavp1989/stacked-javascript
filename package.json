@@ -1,0 +1,14 @@
+{
+  "name": "stacked-javascript",
+  "private": true,
+  "type": "module",
+  "description": "Scripts the stacked.camp Webflow site loads from Google Cloud Storage",
+  "scripts": {
+    "style": "node scripts/generate-style.mjs",
+    "build": "esbuild src/home/index.js --bundle --minify --format=iife --target=es2019 --loader:.svg=text --outfile=javascript/home/map.js"
+  },
+  "devDependencies": {
+    "@protomaps/basemaps": "5.7.2",
+    "esbuild": "0.28.2"
+  }
+}
